@@ -65,4 +65,6 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 we use breeze (which not proided by default anymore in laravel 12), so we need to set up breeze starter kit manually.
 
 during creating project "laravel new project-name", we chose starterkit to No
-after everything is completed we install the breeze dependency: composer require laravel/breeze --dev
+after everything is completed we install the breeze dependency: 
+- composer require laravel/breeze --dev
+- php artisan breeze:install
