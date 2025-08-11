@@ -76,3 +76,5 @@ command to create migration file (create db table named categories): php artisan
 command to create controller: php artisan make:controller HomeController
 command to create model: php artisan make:model Category
 shorter command to create model along with migration file (name: post): php artisan make:model Post -m
+
+command to create resource controller: php artisan make:controller CategoryController --resource --model=Category
