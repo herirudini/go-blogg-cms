@@ -68,3 +68,13 @@ during creating project "laravel new project-name", we chose starterkit to No
 after everything is completed we install the breeze dependency: 
 - composer require laravel/breeze --dev
 - php artisan breeze:install
+
+run in terminal: composer run dev
+ctrl+click the link of the: "Server running on [http:xxxxx]"
+run migration if database not exist: php artisan migrate
+command to create migration file (create db table named categories): php artisan make:migration "create categories table"
+command to create controller: php artisan make:controller HomeController
+command to create model: php artisan make:model Category
+shorter command to create model along with migration file (name: post): php artisan make:model Post -m
+
+command to create resource controller: php artisan make:controller CategoryController --resource --model=Category
