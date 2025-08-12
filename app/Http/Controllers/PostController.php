@@ -42,9 +42,15 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Post $post)
+    // public function show($id) {
+    // $post = Post::find($id); 
+    public function show(Post $data)
     {
-        //
+        $post = $data;
+        if (!$post) {
+            abort(404, 'Post not found');
+        }
+        return view('pages.posts.posts-detail', compact('post'));
     }
 
     /**
