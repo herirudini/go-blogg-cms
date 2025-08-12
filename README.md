@@ -101,3 +101,6 @@ to do migration with clear database:
 command to create middleware:
 - php artisan make:middleware IsAdminMiddleware
 - php artisan make:controller PostController --resource --model=Post
+
+debuger query sql:
+- composer require barryvdh/laravel-debugbar --dev
