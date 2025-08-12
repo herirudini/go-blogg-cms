@@ -5,22 +5,22 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
 use App\Http\Middleware\IsAdminMiddleware;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\HomeController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::middleware('auth')->group(function () {
+Route::get('/', [HomeController::class, 'index'])->name('dashboard');
+Route::get('/post/{data}', [PostController::class, 'show'])->name('post');
+Route::view('/contact-us', 'pages.contact')->name('contact');
+Route::view('/about-us', 'pages.about')->name('about');
+Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->middleware(['auth', 'verified'])->name('dashboard');
+    // Route::get('/dashboard', function () {
+    //     return view('dashboard');
+    // })->middleware(['auth', 'verified'])->name('dashboard');
     Route::resource('categories', CategoryController::class)->middleware(IsAdminMiddleware::class);
     // Route::resource('categories', CategoryController::class);
     Route::resource('posts', PostController::class);
 });
-
 
 require __DIR__ . '/auth.php';
