@@ -32,8 +32,10 @@ COPY ./nginx.conf /etc/nginx/sites-available/default
 EXPOSE 80
 
 # Copy entrypoint
-COPY ./docker/docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
-RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+COPY ./docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
+
+# Make entrypoint executable
+RUN chmod +x docker-entrypoint.sh
 
 # Start Nginx + PHP-FPM
 ENTRYPOINT ["docker-entrypoint.sh"]
