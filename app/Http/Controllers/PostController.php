@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Http\Requests\StorePostRequest;
 
 class PostController extends Controller
 {
@@ -29,18 +30,21 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    // public function store(Request $request)
+    // {
+    //     $request->validate([ 
+    //         'title' => ['required'],
+    //         'content' => ['required'],
+    //         'category_id' => ['required'],
+    //     ]);
+    // Post::create([
+        //     'title' => $request->input('title'),
+        //     'content' => $request->input('content'),
+        //     'category_id' => $request->input('category_id'),
+        // ]);
+    public function store(StorePostRequest $request)
     {
-        $request->validate([ 
-            'title' => ['required'],
-            'content' => ['required'],
-            'category_id' => ['required'],
-        ]);
-        Post::create([
-            'title' => $request->input('title'),
-            'content' => $request->input('content'),
-            'category_id' => $request->input('category_id'),
-        ]);
+        Post::create($request->validated());
         return redirect()->route('posts.index');
     }
 
@@ -70,13 +74,16 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Post $post)
+    // public function update(Request $request, Post $post)
+    // {
+    //     $post->update([
+    //         'title' => $request->input('title'),
+    //         'content' => $request->input('content'),
+    //         'category_id' => $request->input('category_id'),
+    //     ]);
+    public function update(StorePostRequest $request, Post $post)
     {
-        $post->update([
-            'title' => $request->input('title'),
-            'content' => $request->input('content'),
-            'category_id' => $request->input('category_id'),
-        ]);
+        $post->update($request->validated());
         return redirect()->route('posts.index');
     }
 

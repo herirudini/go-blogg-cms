@@ -104,3 +104,6 @@ command to create middleware:
 
 debuger query sql:
 - composer require barryvdh/laravel-debugbar --dev
+
+manage form request:
+- php artisan make:request StorePostRequest

@@ -9,6 +9,15 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <form method="POST" action="{{ route('posts.update', $post) }}">
                         @csrf
                         @method('PUT')
@@ -17,19 +26,19 @@
                             <div>
                                 <label for="title">Title:</label>
                             </div>
-                            <input type="text" name="title" id="title" required value="{{ $post->title }}" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
+                            <input type="text" name="title" id="title" value="{{ $post->title }}" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
                         </div>
                         <div>
                             <div>
                                 <label for="content">Content:</label>
                             </div>
-                            <textarea name="content" id="content" required class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">{{ $post->content }}</textarea>
+                            <textarea name="content" id="content" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">{{ $post->content }}</textarea>
                         </div>
                         <div>
                             <div>
                                 <label for="category_id">Category:</label>
                             </div>
-                            <select name="category_id" id="category_id" required class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                            <select name="category_id" id="category_id" class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                                 @foreach ($categories as $category)
                                     <option value="{{ $category->id }}" @selected($category->id == $post->category_id)>{{ $category->name }}</option>
                                 @endforeach
