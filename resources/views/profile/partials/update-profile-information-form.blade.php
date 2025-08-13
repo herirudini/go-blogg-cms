@@ -46,6 +46,10 @@
                 </div>
             @endif
         </div>
+        <div>
+            <x-text-input id="is_admin" name="is_admin" type="checkbox" value="1" :checked="old('is_admin', $user->is_admin)" class="mt-1 block w-full" />
+            <x-input-error class="mt-2" :messages="$errors->get('is_admin')" />
+        </div>
 
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Save') }}</x-primary-button>

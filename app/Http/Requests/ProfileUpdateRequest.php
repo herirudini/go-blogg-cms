@@ -25,6 +25,7 @@ class ProfileUpdateRequest extends FormRequest
                 'max:255',
                 Rule::unique(User::class)->ignore($this->user()->id),
             ],
+            'is_admin' => ['boolean'], // Ensure it's boolean value or 1 and 0
         ];
     }
 }

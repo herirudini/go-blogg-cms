@@ -15,12 +15,14 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    @if(auth()->user())
+                        <x-nav-link :href="route('posts.index')" :active="request()->routeIs('posts.index')">
+                            {{ __('My Posts') }}
+                        </x-nav-link>
+                    @endif
                     @if(auth()->user() && auth()->user()->is_admin)
                         <x-nav-link :href="route('categories.index')" :active="request()->routeIs('categories.index')">
                             {{ __('Categories') }}
-                        </x-nav-link>
-                        <x-nav-link :href="route('posts.index')" :active="request()->routeIs('posts.index')">
-                            {{ __('My Posts') }}
                         </x-nav-link>
                     @endif
                 </div>
@@ -95,12 +97,14 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+            @if(auth()->user())
+                <x-responsive-nav-link :href="route('posts.index')" :active="request()->routeIs('posts.index')">
+                    {{ __('My Posts') }}
+                </x-responsive-nav-link>
+            @endif
             @if(auth()->user() && auth()->user()->is_admin)
                 <x-responsive-nav-link :href="route('categories.index')" :active="request()->routeIs('categories.index')">
                     {{ __('Categories') }}
-                </x-responsive-nav-link>
-                <x-responsive-nav-link :href="route('posts.index')" :active="request()->routeIs('posts.index')">
-                    {{ __('My Posts') }}
                 </x-responsive-nav-link>
             @endif
         </div>
