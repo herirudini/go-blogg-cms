@@ -35,7 +35,7 @@ EXPOSE 80
 COPY ./docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 
 # Make entrypoint executable
-RUN chmod +x docker-entrypoint.sh
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
 # Start Nginx + PHP-FPM
 ENTRYPOINT ["docker-entrypoint.sh"]
